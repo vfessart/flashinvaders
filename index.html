@@ -241,11 +241,16 @@
   .city-dot{ width:12px;height:12px; border-radius:50%; flex-shrink:0; }
   .city-name{ flex:1; min-width:0; font-size:13px; }
   .city-count{ font-size:12px; color:var(--muted); white-space:nowrap; text-align:right; flex-shrink:0; }
+  .table-wrap{ overflow-x:auto; -webkit-overflow-scrolling:touch; }
   table{ width:100%; border-collapse:collapse; font-size:13px; }
   th,td{ padding:8px 10px; text-align:left; border-bottom:1px solid var(--border); }
   th{ color:var(--muted); font-size:11px; text-transform:uppercase; font-weight:600; }
   tr:hover td{ background:var(--accent-tint); }
   .tag{ display:inline-block; font-size:10px; padding:2px 8px; border-radius:10px; font-weight:600; }
+  @media (max-width:640px){
+    th,td{ padding:7px 7px; font-size:12px; }
+    th{ font-size:10px; }
+  }
   footer{ text-align:center; color:var(--muted); font-size:11px; margin-top:30px; }
 </style>
 </head>
@@ -327,18 +332,22 @@
 
 <div class="panel">
   <h2>Top 10 des meilleurs jours</h2>
+  <div class="table-wrap">
   <table>
     <thead><tr><th>#</th><th>Date</th><th>Flashs</th><th class="points-col">Points</th><th>Villes concernées</th></tr></thead>
     <tbody id="topDaysBody"></tbody>
   </table>
+  </div>
 </div>
 
 <div class="panel">
   <h2>10 derniers flashs</h2>
+  <div class="table-wrap">
   <table>
     <thead><tr><th>Invader</th><th>Ville</th><th>Date</th><th>Heure</th><th class="points-col">Points</th></tr></thead>
     <tbody id="recentBody"></tbody>
   </table>
+  </div>
 </div>
 
 <footer>Généré à partir de l'historique InvaderQuest · 398 flashs analysés</footer>
