@@ -84,11 +84,18 @@
     background:radial-gradient(1200px 600px at 50% -10%, var(--bg-glow) 0%, var(--bg) 60%);
     color:var(--text);
     font-family:'Segoe UI', system-ui, -apple-system, sans-serif;
-    padding:28px 20px 60px;
+    padding:
+      calc(28px + env(safe-area-inset-top, 0px))
+      calc(20px + env(safe-area-inset-right, 0px))
+      calc(60px + env(safe-area-inset-bottom, 0px))
+      calc(20px + env(safe-area-inset-left, 0px));
     transition:background .2s, color .2s;
   }
   .theme-toggle{
-    position:fixed; top:18px; right:18px; z-index:60;
+    position:fixed;
+    top:calc(18px + env(safe-area-inset-top, 0px));
+    right:calc(18px + env(safe-area-inset-right, 0px));
+    z-index:60;
     background:var(--panel); border:1px solid var(--border); color:var(--text);
     width:38px; height:38px; border-radius:50%; cursor:pointer; font-size:17px;
     display:flex; align-items:center; justify-content:center;
@@ -96,7 +103,10 @@
   }
   .theme-toggle:hover{ border-color:var(--green); }
   .share-btn{
-    position:fixed; top:18px; right:64px; z-index:60;
+    position:fixed;
+    top:calc(18px + env(safe-area-inset-top, 0px));
+    right:calc(64px + env(safe-area-inset-right, 0px));
+    z-index:60;
     background:var(--panel); border:1px solid var(--border); color:var(--text);
     height:38px; padding:0 14px; border-radius:20px; cursor:pointer; font-size:13px;
     display:none; align-items:center; gap:6px; font-family:inherit;
