@@ -228,6 +228,7 @@
   .bar-val{ font-size:10px; color:var(--green); margin-bottom:3px; }
   .city-grid{ display:grid; grid-template-columns:220px 1fr; gap:28px; align-items:center; }
   @media (max-width:640px){ .city-grid{grid-template-columns:1fr;} }
+  .donut-holder{ position:relative; }
   .donut{ width:200px;height:200px; border-radius:50%; margin:0 auto; position:relative; }
   .donut::after{ content:""; position:absolute; inset:28px; border-radius:50%; background:var(--panel); }
   .donut-center{
@@ -286,7 +287,7 @@
     </div>
     <div class="calendar-grid" id="calGrid"></div>
   </div>
-<div class="cell-tip" id="cellTip"></div>
+  <div class="cell-tip" id="cellTip"></div>
   <div class="legend">
     <span>Moins</span>
     <span class="cell" style="background:var(--cell-0)"></span>
@@ -311,7 +312,7 @@
 <div class="panel">
   <h2>Répartition par ville</h2>
   <div class="city-grid">
-    <div class="donut-holder" style="position:relative;">
+    <div class="donut-holder">
       <div class="donut" id="donut"></div>
       <div class="donut-center" id="donutCenter"></div>
     </div>
@@ -322,7 +323,7 @@
 <div class="panel" id="tierPanel">
   <h2>Répartition par valeur de points</h2>
   <div class="city-grid">
-    <div class="donut-holder" style="position:relative;">
+    <div class="donut-holder">
       <div class="donut" id="tierDonut"></div>
       <div class="donut-center" id="tierDonutCenter"></div>
     </div>
@@ -333,20 +334,20 @@
 <div class="panel">
   <h2>Top 10 des meilleurs jours</h2>
   <div class="table-wrap">
-  <table>
-    <thead><tr><th>#</th><th>Date</th><th>Flashs</th><th class="points-col">Points</th><th>Villes concernées</th></tr></thead>
-    <tbody id="topDaysBody"></tbody>
-  </table>
+    <table>
+      <thead><tr><th>#</th><th>Date</th><th>Flashs</th><th class="points-col">Points</th><th>Villes concernées</th></tr></thead>
+      <tbody id="topDaysBody"></tbody>
+    </table>
   </div>
 </div>
 
 <div class="panel">
   <h2>10 derniers flashs</h2>
   <div class="table-wrap">
-  <table>
-    <thead><tr><th>Invader</th><th>Ville</th><th>Date</th><th>Heure</th><th class="points-col">Points</th></tr></thead>
-    <tbody id="recentBody"></tbody>
-  </table>
+    <table>
+      <thead><tr><th>Invader</th><th>Ville</th><th>Date</th><th>Heure</th><th class="points-col">Points</th></tr></thead>
+      <tbody id="recentBody"></tbody>
+    </table>
   </div>
 </div>
 
@@ -453,8 +454,8 @@ const totalPoints = records.reduce((s,r) => s + (r.points||0), 0);
 // On l'intègre au TOTAL de points (KPI + moyenne) pour coller au score de
 // l'app ; les graphiques et le donut restent sur les points d'invaders purs.
 const CITY_BONUS = 100;
-const dates = records.map(r=>r.date).sort();
-const firstDate = dates[0], lastDate = dates[dates.length-1];
+// records est déjà trié par date+heure croissante (cf. plus haut).
+const firstDate = records[0].date, lastDate = records[records.length-1].date;
 const activeDays = Object.keys(byDayCount).length;
 const citiesCount = Object.keys(byCityCount).length;
 const cityBonusTotal = hasPoints ? citiesCount * CITY_BONUS : 0;
