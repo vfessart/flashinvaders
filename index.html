@@ -231,8 +231,8 @@
   .city-list{ display:flex; flex-direction:column; gap:12px; }
   .city-row{ display:flex; align-items:center; gap:12px; }
   .city-dot{ width:12px;height:12px; border-radius:50%; flex-shrink:0; }
-  .city-name{ width:230px; font-size:13px; }
-  .city-count{ font-size:12px; color:var(--muted); }
+  .city-name{ flex:1; min-width:0; font-size:13px; }
+  .city-count{ font-size:12px; color:var(--muted); white-space:nowrap; text-align:right; flex-shrink:0; }
   table{ width:100%; border-collapse:collapse; font-size:13px; }
   th,td{ padding:8px 10px; text-align:left; border-bottom:1px solid var(--border); }
   th{ color:var(--muted); font-size:11px; text-transform:uppercase; font-weight:600; }
